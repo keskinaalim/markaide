@@ -9,25 +9,34 @@ function HomeScreen({ onOpen }) {
   return (
     <main className="relative min-h-screen w-full overflow-hidden pb-14 pt-16">
       <section className="relative mx-auto w-full max-w-5xl px-4 text-center sm:px-6">
-        <div className="mb-6 inline-flex animate-float items-center gap-2 rounded-full border border-slate-200 bg-white/80 px-4 py-2 text-[11px] font-extrabold uppercase tracking-[0.2em] text-slate-500 shadow-sm transition-transform hover:scale-105">
-          <Sparkles size={14} className="text-primary" />
+        <div className="mb-8 inline-flex animate-bounce-subtle items-center gap-2.5 rounded-full border border-blue-200/60 bg-gradient-to-r from-blue-50/90 to-sky-50/90 px-5 py-2.5 text-[11px] font-extrabold uppercase tracking-[0.2em] text-blue-600 shadow-lg shadow-blue-500/10 backdrop-blur-xl transition-all duration-500 hover:scale-105 hover:shadow-xl hover:shadow-blue-500/20">
+          <Sparkles size={16} className="animate-spin-slow text-blue-500" />
           ide'li markasını oluşturuyor
         </div>
 
-        <h1 className="font-display text-6xl font-extrabold leading-[1.05] tracking-tight text-slate-900 sm:text-7xl lg:text-8xl">
-          Geleceği
+        <h1 className="font-display text-6xl font-black leading-[1.05] tracking-tight sm:text-7xl lg:text-8xl">
+          <span className="animate-fade-in-down text-slate-900">Geleceği</span>
           <br />
-          <span className="bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 bg-clip-text text-transparent">Şekillendirenler</span>
+          <span className="text-gradient animate-fade-in-up inline-block text-7xl sm:text-8xl lg:text-9xl">
+            Şekillendirenler
+          </span>
         </h1>
 
-        <p className="mx-auto mt-8 max-w-2xl text-lg font-medium leading-relaxed text-slate-500 sm:text-xl">
-          ide ekosistemindeki markaların vizyonunu, teknoloji derinliğini ve tasarım odaklı yaklaşımını tek bir canlı vitrin içinde keşfedin.
-        </p>
+        <div className="relative mx-auto mt-10 max-w-2xl">
+          <div className="absolute -inset-4 rounded-3xl bg-gradient-to-r from-blue-400/20 via-sky-400/20 to-cyan-400/20 blur-2xl" />
+          <p className="relative animate-scale-in text-lg font-semibold leading-relaxed text-slate-600 sm:text-xl">
+            ide ekosistemindeki markaların vizyonunu, teknoloji derinliğini ve tasarım odaklı yaklaşımını tek bir canlı vitrin içinde keşfedin.
+          </p>
+        </div>
       </section>
 
-      <section className="relative z-10 mx-auto mt-10 flex w-full max-w-5xl flex-col gap-5 px-4 sm:gap-6 sm:px-6">
+      <section className="relative z-10 mx-auto mt-16 flex w-full max-w-5xl flex-col gap-6 px-4 sm:gap-7 sm:px-6">
         {brands.map((brand, index) => (
-          <div key={brand.id} className="animate-float" style={{ animationDelay: `${index * 0.08}s` }}>
+          <div
+            key={brand.id}
+            className="animate-fade-in-up"
+            style={{ animationDelay: `${index * 0.1}s`, animationFillMode: 'backwards' }}
+          >
             <BrandCard brand={brand} onOpen={onOpen} />
           </div>
         ))}

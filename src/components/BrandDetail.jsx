@@ -7,20 +7,23 @@ import {
   Lightbulb,
   Sparkles,
   Target,
-  Eye
+  Eye,
+  Mail
 } from 'lucide-react';
 import BrandLogo from './BrandLogo';
 
 function ContentCard({ title, text, icon: Icon, accent, iconBg, borderColor }) {
   return (
-    <article className={`glass hover-lift rounded-[2rem] p-7 ${borderColor ? `border-l-4 ${borderColor}` : ''}`}>
-      <div className="mb-5 flex items-center gap-4">
-        <span className="grid h-12 w-12 place-content-center rounded-2xl" style={{ backgroundColor: iconBg }}>
-          <Icon size={20} style={{ color: accent }} />
+    <article className={`glass-strong group relative overflow-hidden rounded-[2.5rem] p-8 transition-all duration-500 hover:-translate-y-1 hover:shadow-xl ${borderColor ? `border-l-4 ${borderColor}` : ''}`}>
+      <div className="absolute -right-10 -top-10 h-32 w-32 rounded-full opacity-0 blur-3xl transition-opacity duration-500 group-hover:opacity-20" style={{ backgroundColor: accent }} />
+
+      <div className="relative mb-6 flex items-center gap-4">
+        <span className="grid h-14 w-14 place-content-center rounded-2xl shadow-lg transition-all duration-500 group-hover:scale-110 group-hover:rotate-6" style={{ backgroundColor: iconBg }}>
+          <Icon size={22} style={{ color: accent }} />
         </span>
-        <h3 className="font-display text-2xl font-bold tracking-tight text-slate-900">{title}</h3>
+        <h3 className="font-display text-2xl font-black tracking-tight text-slate-900">{title}</h3>
       </div>
-      <p className="text-lg leading-relaxed text-slate-600">{text}</p>
+      <p className="relative text-lg font-medium leading-relaxed text-slate-700">{text}</p>
     </article>
   );
 }
@@ -32,62 +35,64 @@ export default function BrandDetail({ brand, onBack }) {
 
   return (
     <div className="w-full min-h-screen pb-12 pt-0">
-      <nav className="sticky top-0 z-40">
-        <div className="glass flex w-full items-center justify-between rounded-none px-4 py-3 shadow-sm sm:px-6 lg:px-10">
+      <nav className="sticky top-0 z-40 animate-fade-in-down">
+        <div className="glass-strong flex w-full items-center justify-between rounded-none px-4 py-4 shadow-lg backdrop-blur-2xl sm:px-6 lg:px-10">
           <button
             type="button"
             onClick={onBack}
-            className="group inline-flex items-center gap-2 text-sm font-semibold text-slate-700 transition-colors hover:text-slate-900"
+            className="group inline-flex items-center gap-2 rounded-xl bg-slate-100 px-4 py-2 text-sm font-bold text-slate-700 transition-all hover:bg-slate-200 hover:text-slate-900"
           >
             <ArrowLeft size={16} className="transition-transform group-hover:-translate-x-1" />
             Geri
           </button>
 
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-3">
             <div
-              className="grid h-8 w-8 place-content-center rounded-lg text-white"
+              className="grid h-10 w-10 place-content-center rounded-xl text-white shadow-lg transition-transform hover:scale-110"
               style={{ backgroundColor: brand.accent }}
             >
-              <BrandIcon size={16} />
+              <BrandIcon size={18} />
             </div>
-            <span className="font-display text-lg font-extrabold tracking-tight text-slate-900">{brand.name}</span>
+            <span className="font-display text-xl font-black tracking-tight text-slate-900">{brand.name}</span>
           </div>
 
-          <div className="w-[58px]" aria-hidden="true" />
+          <div className="w-[72px]" aria-hidden="true" />
         </div>
       </nav>
 
       <main className="mt-4 w-full px-4 sm:px-6 lg:px-10">
-        <section className="relative mb-8 overflow-hidden rounded-[2.5rem] py-10 shadow-2xl md:py-16 px-8 md:px-12" style={{ background: `linear-gradient(135deg, ${brand.accent} 0%, #3b82f6 55%, #8b5cf6 100%)` }}>
-          <div className="hero-blob absolute right-[-4rem] top-[-2rem] h-80 w-80 rounded-full bg-white/25" />
-          <div className="hero-blob absolute bottom-[-8rem] right-12 h-72 w-72 rounded-full bg-indigo-200/30" />
+        <section className="animate-scale-in relative mb-10 overflow-hidden rounded-[3rem] px-8 py-12 shadow-2xl md:px-12 md:py-16" style={{ background: `linear-gradient(135deg, ${brand.accent} 0%, #3b82f6 45%, #6366f1 75%, #8b5cf6 100%)`, backgroundSize: '200% 200%', animation: 'gradient-shift 15s ease infinite' }}>
+          <div className="hero-blob absolute -right-20 -top-20 h-96 w-96 rounded-full bg-white/20" />
+          <div className="hero-blob absolute -bottom-24 right-16 h-80 w-80 rounded-full bg-white/15" />
+          <div className="hero-blob absolute left-1/4 top-1/3 h-64 w-64 rounded-full bg-white/10" />
 
-          <div className="relative z-10 grid items-center gap-10 md:grid-cols-2">
+          <div className="relative z-10 grid items-center gap-12 md:grid-cols-2">
             <div className="text-white">
-              <div className="mb-6 inline-block rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-[10px] font-extrabold uppercase tracking-[0.2em] backdrop-blur-md">
+              <div className="mb-7 inline-flex items-center gap-2 rounded-full border-2 border-white/30 bg-white/15 px-5 py-2 text-[11px] font-extrabold uppercase tracking-[0.2em] backdrop-blur-xl transition-all hover:scale-105 hover:bg-white/25">
+                <Sparkles size={14} className="animate-spin-slow" />
                 {brand.categoryTag || 'Yapay Zeka Destekli Girişim'}
               </div>
-              <h1 className="font-display text-5xl font-extrabold tracking-tight md:text-7xl">{brand.name}</h1>
-              <p className="mt-3 text-2xl font-medium italic text-blue-100">"{brand.slogan}"</p>
-              <p className="mt-8 max-w-xl text-lg leading-relaxed text-blue-50/90">{brand.summary}</p>
+              <h1 className="font-display text-6xl font-black tracking-tight drop-shadow-2xl md:text-8xl">{brand.name}</h1>
+              <p className="mt-4 text-2xl font-bold italic text-white/95 drop-shadow-lg md:text-3xl">"{brand.slogan}"</p>
+              <p className="mt-10 max-w-xl text-lg font-medium leading-relaxed text-white/90 drop-shadow-md">{brand.summary}</p>
             </div>
 
             <div className="flex justify-center md:justify-end">
-              <div className="group relative h-64 w-64 rotate-3 overflow-hidden rounded-[2.5rem] bg-slate-900 p-8 shadow-2xl transition-transform duration-500 hover:rotate-0 md:h-80 md:w-80">
+              <div className="group relative h-72 w-72 overflow-hidden rounded-[3rem] bg-gradient-to-br from-slate-800 to-slate-900 p-10 shadow-2xl ring-2 ring-white/20 transition-all duration-700 hover:scale-105 hover:rotate-2 hover:shadow-[0_30px_60px_-15px_rgba(0,0,0,0.5)] md:h-96 md:w-96">
                 {!logoError ? (
                   <BrandLogo
                     src={`/logolar/${brand.logo}`}
                     alt={`${brand.name} logosu`}
-                    className="h-full w-full rounded-2xl object-contain bg-white/95 p-6"
+                    className="h-full w-full rounded-3xl bg-white/98 p-8 object-contain shadow-xl ring-1 ring-slate-900/10"
                     accent={brand.accent}
                     onError={() => setLogoError(true)}
                   />
                 ) : (
-                  <div className="grid h-full w-full place-content-center rounded-2xl bg-slate-800 text-white/85">
-                    <BrandIcon size={84} />
+                  <div className="grid h-full w-full place-content-center rounded-3xl bg-slate-800 text-white/90">
+                    <BrandIcon size={96} />
                   </div>
                 )}
-                <div className="pointer-events-none absolute inset-0 rounded-[2.5rem] border border-white/10" />
+                <div className="pointer-events-none absolute inset-0 rounded-[3rem] bg-gradient-to-tr from-white/10 via-transparent to-transparent opacity-0 transition-opacity duration-700 group-hover:opacity-100" />
               </div>
             </div>
           </div>
@@ -132,37 +137,37 @@ export default function BrandDetail({ brand, onBack }) {
           </div>
 
           <div className="space-y-8">
-            <aside className="glass rounded-[2.5rem] p-8 lg:sticky lg:top-24">
-              <h2 className="font-display text-2xl font-bold tracking-tight text-slate-900">Kaynaklar ve İletişim</h2>
+            <aside className="glass-strong rounded-[3rem] p-8 lg:sticky lg:top-24">
+              <h2 className="font-display text-2xl font-black tracking-tight text-slate-900">Kaynaklar ve İletişim</h2>
 
               <div className="mt-8 space-y-4">
                 {hasPdf ? (
                   <a
                     href={brand.pdf}
                     download
-                    className="group flex w-full items-center justify-between rounded-2xl border border-slate-200 bg-slate-100 p-5 transition-all hover:bg-slate-200"
+                    className="group flex w-full items-center justify-between overflow-hidden rounded-2xl border-2 border-slate-200 bg-gradient-to-br from-slate-50 to-slate-100 p-5 shadow-md transition-all hover:scale-[1.02] hover:border-slate-300 hover:shadow-xl"
                   >
-                    <span className="flex items-center gap-3 font-semibold text-slate-800">
-                      <span className="grid h-10 w-10 place-content-center rounded-xl bg-red-100 text-red-600">
-                        <Download size={18} />
+                    <span className="flex items-center gap-3 font-bold text-slate-800">
+                      <span className="grid h-12 w-12 place-content-center rounded-xl bg-gradient-to-br from-red-400 to-red-600 text-white shadow-lg transition-transform group-hover:scale-110 group-hover:rotate-12">
+                        <Download size={20} />
                       </span>
                       Sunumu İndir
                     </span>
-                    <Download size={16} className="text-slate-400 transition-transform group-hover:translate-y-0.5" />
+                    <Download size={18} className="text-slate-500 transition-all group-hover:translate-y-1 group-hover:text-red-600" />
                   </a>
                 ) : (
                   <button
                     type="button"
                     disabled
-                    className="flex w-full cursor-not-allowed items-center justify-between rounded-2xl border border-slate-200 bg-slate-100 p-5 text-slate-400"
+                    className="flex w-full cursor-not-allowed items-center justify-between rounded-2xl border-2 border-slate-200 bg-slate-50 p-5 text-slate-400 opacity-60"
                   >
-                    <span className="flex items-center gap-3 font-semibold">
-                      <span className="grid h-10 w-10 place-content-center rounded-xl bg-slate-200">
-                        <Download size={18} />
+                    <span className="flex items-center gap-3 font-bold">
+                      <span className="grid h-12 w-12 place-content-center rounded-xl bg-slate-200">
+                        <Download size={20} />
                       </span>
                       Sunumu İndir
                     </span>
-                    <Download size={16} />
+                    <Download size={18} />
                   </button>
                 )}
 
@@ -170,47 +175,48 @@ export default function BrandDetail({ brand, onBack }) {
                   href={brand.contact}
                   target="_blank"
                   rel="noreferrer"
-                  className="group relative flex w-full items-center justify-center overflow-hidden rounded-2xl px-5 py-4 font-bold text-white shadow-lg transition-all active:scale-95"
-                  style={{ backgroundColor: brand.accent, boxShadow: `0 10px 24px -12px ${brand.accent}` }}
+                  className="shimmer-effect group relative flex w-full items-center justify-center overflow-hidden rounded-2xl px-6 py-5 font-black text-white shadow-2xl transition-all hover:scale-[1.02] active:scale-95"
+                  style={{ backgroundColor: brand.accent, boxShadow: `0 15px 35px -10px ${brand.accent}80` }}
                 >
-                  <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/15 to-transparent transition-transform duration-1000 group-hover:translate-x-full" />
-                  <span className="relative z-10 flex items-center gap-2">
-                    <ExternalLink size={16} />
+                  <span className="relative z-10 flex items-center gap-2.5">
+                    <ExternalLink size={18} className="transition-transform group-hover:rotate-12" />
                     Web Sitesini Ziyaret Et
                   </span>
                 </a>
               </div>
 
-              <div className="mt-10 border-t border-slate-200 pt-8">
-                <p className="mb-4 text-xs font-extrabold uppercase tracking-widest text-slate-400">Sosyal Medya</p>
-                <div className="flex gap-4">
-                  <a href="#" className="glass grid h-12 w-12 place-content-center rounded-xl transition-all hover:bg-primary hover:text-white">
-                    <Mail size={18} />
+              <div className="mt-10 border-t-2 border-slate-200 pt-8">
+                <p className="mb-5 text-xs font-extrabold uppercase tracking-widest text-slate-400">Sosyal Medya</p>
+                <div className="flex gap-3">
+                  <a href="#" className="glass group grid h-14 w-14 place-content-center rounded-xl shadow-md transition-all hover:scale-110 hover:shadow-lg" style={{ hover: { backgroundColor: brand.accent } }}>
+                    <Mail size={20} className="text-slate-600 transition-colors group-hover:text-blue-600" />
                   </a>
-                  <a href="#" className="glass grid h-12 w-12 place-content-center rounded-xl transition-all hover:bg-primary hover:text-white">
-                    <Sparkles size={18} />
+                  <a href="#" className="glass group grid h-14 w-14 place-content-center rounded-xl shadow-md transition-all hover:scale-110 hover:shadow-lg">
+                    <Sparkles size={20} className="text-slate-600 transition-colors group-hover:text-blue-600" />
                   </a>
-                  <a href="#" className="glass grid h-12 w-12 place-content-center rounded-xl transition-all hover:bg-primary hover:text-white">
-                    <Eye size={18} />
+                  <a href="#" className="glass group grid h-14 w-14 place-content-center rounded-xl shadow-md transition-all hover:scale-110 hover:shadow-lg">
+                    <Eye size={20} className="text-slate-600 transition-colors group-hover:text-blue-600" />
                   </a>
                 </div>
               </div>
             </aside>
 
-            <div className="group relative overflow-hidden rounded-[2.5rem] bg-slate-900 p-8 text-white">
-              <div className="absolute -bottom-6 -right-5 h-32 w-32 rounded-full bg-primary/20 blur-3xl transition-transform duration-700 group-hover:scale-150" />
-              <h3 className="font-display text-xl font-bold">Geleceği Şekillendirenler</h3>
-              <p className="mt-3 text-sm leading-relaxed text-slate-400">
-                İnovasyon galerisine dönün ve diğer startup projelerini keşfedin.
-              </p>
-              <button
-                type="button"
-                onClick={onBack}
-                className="mt-6 inline-flex items-center gap-2 text-sm font-bold transition-all hover:gap-3"
-              >
-                Galeriyi Görüntüle
-                <ArrowRight size={14} />
-              </button>
+            <div className="group relative overflow-hidden rounded-[3rem] bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 p-10 text-white shadow-2xl">
+              <div className="absolute -bottom-10 -right-10 h-40 w-40 animate-pulseGlow rounded-full blur-3xl" style={{ backgroundColor: brand.accent }} />
+              <div className="relative">
+                <h3 className="font-display text-2xl font-black">Geleceği Şekillendirenler</h3>
+                <p className="mt-4 text-base font-medium leading-relaxed text-slate-300">
+                  İnovasyon galerisine dönün ve diğer startup projelerini keşfedin.
+                </p>
+                <button
+                  type="button"
+                  onClick={onBack}
+                  className="mt-7 inline-flex items-center gap-2 rounded-xl bg-white/10 px-5 py-3 text-sm font-bold backdrop-blur-sm transition-all hover:gap-3 hover:bg-white/20"
+                >
+                  Galeriyi Görüntüle
+                  <ArrowRight size={16} />
+                </button>
+              </div>
             </div>
           </div>
         </section>
