@@ -56,16 +56,18 @@ function HomeScreen({ onOpen }) {
         </div>
       </section>
 
-      <section className="relative z-10 mx-auto flex w-full max-w-6xl flex-col gap-6 px-4 py-8 sm:gap-7 sm:px-6 lg:px-8">
-        {brands.map((brand, index) => (
-          <div
-            key={brand.id}
-            className="animate-fade-in-up"
-            style={{ animationDelay: `${index * 0.08}s`, animationFillMode: 'backwards' }}
-          >
-            <BrandCard brand={brand} onOpen={onOpen} />
-          </div>
-        ))}
+      <section className="relative z-10 mx-auto w-full max-w-6xl px-4 py-8 sm:px-6 lg:px-8">
+        <div className="grid gap-6 sm:gap-7 md:grid-cols-2 lg:grid-cols-3">
+          {brands.map((brand, index) => (
+            <div
+              key={brand.id}
+              className="animate-fade-in-up"
+              style={{ animationDelay: `${index * 0.08}s`, animationFillMode: 'backwards' }}
+            >
+              <BrandCard brand={brand} onOpen={onOpen} />
+            </div>
+          ))}
+        </div>
       </section>
 
       <section className="relative mx-auto w-full max-w-6xl px-4 py-16 sm:px-6 lg:px-8">
