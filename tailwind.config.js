@@ -16,11 +16,11 @@ export default {
       boxShadow: {
         glow: '0 20px 60px -20px var(--brand-shadow)',
         soft: '0 12px 36px -24px rgba(15, 23, 42, 0.45)',
-        'neon': '0 0 20px rgba(59, 130, 246, 0.5), 0 0 60px rgba(59, 130, 246, 0.2)',
-        'neon-hover': '0 0 30px rgba(59, 130, 246, 0.6), 0 0 80px rgba(59, 130, 246, 0.3)',
-        'card': '0 8px 32px -8px rgba(15, 23, 42, 0.12)',
-        'card-hover': '0 20px 60px -12px rgba(15, 23, 42, 0.25)',
-        'inner-glow': 'inset 0 2px 12px rgba(255, 255, 255, 0.1)'
+        'neon': '0 0 20px rgba(16, 185, 129, 0.5), 0 0 60px rgba(59, 130, 246, 0.2)',
+        'neon-hover': '0 0 30px rgba(16, 185, 129, 0.6), 0 0 80px rgba(249, 115, 22, 0.3)',
+        'card': '0 12px 40px -8px rgba(15, 23, 42, 0.15)',
+        'card-hover': '0 25px 70px -12px rgba(15, 23, 42, 0.3)',
+        'inner-glow': 'inset 0 2px 12px rgba(255, 255, 255, 0.15)'
       },
       transitionTimingFunction: {
         spring: 'cubic-bezier(0.34, 1.56, 0.64, 1)',
